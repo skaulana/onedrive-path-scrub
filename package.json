@@ -1,0 +1,25 @@
+{
+  "name": "onedrive-path-scrub",
+  "version": "0.0.2",
+  "description": "Scrubs your OneDrive paths for potential sync issues",
+  "author": "s kaulana (http://www.kaulana.com)",
+  "bin": "./onedrive-path-scrub.js",
+  "preferGlobal": true,
+  "dependencies": {
+    "commander": "^2.7.1"
+  },
+  "os": [ "win32" ],
+  "keywords": [
+    "onedrive",
+    "commander"
+  ],
+  "license": "CC-BY-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skaulana/onedrive-path-scrub.git"
+  },
+  "bugs": {
+    "url": "https://github.com/skaulana/onedrive-path-scrub/issues"
+  },
+  "homepage": "https://github.com/skaulana/onedrive-path-scrub"
+}
