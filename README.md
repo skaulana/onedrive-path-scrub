@@ -13,8 +13,8 @@ find those potentially troublesome paths until Microsoft releases a proper fix.
 
 ## License
 
-Made available to you under [CC-BY-4.0][3]. See the included LICENSE.md.
+Made available to you under the [BSD][3]. See the included LICENSE.md.
 
 [1]: http://blogs.catapultsystems.com/arafels/archive/2014/10/05/microsoft-onedrive-and-search-indexer-30-cpu-all-the-time-and-onedrive-stuck-saying-%E2%80%9Cchecking-for-changes%E2%80%9D-in-the-systray.aspx
 [2]: https://nodejs.org/
-[3]: https://creativecommons.org/licenses/by/4.0/
+[3]: https://en.wikipedia.org/wiki/BSD_licenses
