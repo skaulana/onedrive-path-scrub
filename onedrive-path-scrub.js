@@ -5,10 +5,11 @@ var fs = require('fs')
 
 // set up command line syntax
 program
-  .version('0.0.2')
+  .version('0.0.3')
   .usage('[options]')
   .option('-v, --verbose', 'output extra details')
-  .option('-p, --path [dir]', 'OneDrive directory (defaults to %UserProfile%\\SkyDrive)');
+  .option('-p, --path [dir]', 'OneDrive directory (defaults to %UserProfile%\\SkyDrive)')
+  .option('-f, --full', 'check file paths in addition to folder paths');
 
 program.on('--help', function() {
   console.log('  So What\'s This Thing Do:\n');
@@ -41,22 +42,28 @@ function recursePathContents(err, dir) {
       var itemPath = dir + '\\' + item;
       fs.lstat(itemPath, function(err, stats) {
         if (err) return; // dehydrated OneDrive files will error in lstat(), so swallow them
-        if (stats.isDirectory()) { // only recurse into directories
-          if (isPathSuspicious(item)) {        
-            console.log('\x1b[33m%s\x1b[0m', itemPath); // warn with yellow color
+
+        if (stats.isDirectory()) { // item is a folder
+          if (isPathSuspicious(item)) {
+            console.log('\x1b[33m%s\x1b[0m', itemPath); // warn with yellow color              
           }
-          recursePathContents(err, itemPath);
+          recursePathContents(err, itemPath); // only recurse into directories
+        }
+        else if (program.full) { // item is a file, only check if -f flag is active
+          if (isPathSuspicious(item)) {
+            console.log('\x1b[33m%s\x1b[0m', itemPath); // warn with yellow color              
+          }
         }
       });
     });
 }
 
 // use a regex to check for uncommon characters in a path
-function isPathSuspicious(dir) {
+function isPathSuspicious(p) {
   var pathRegex = /^([A-z]\:)?[\w\d\s\.\\\{\}\(\)\[\]\+\-\';,!@#\$%^&~=]+$/;
-  if (dir.search(pathRegex) === -1) return true;
+  if (p.search(pathRegex) === -1) return true;
   else {
-    if (dir.length >= 255) return true;
+    if (p.length >= 255) return true;
     return false;
   }
 }
