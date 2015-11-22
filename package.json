@@ -1,6 +1,6 @@
 {
   "name": "onedrive-path-scrub",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Scrubs your OneDrive paths for potential sync issues",
   "author": "s kaulana (http://www.kaulana.com)",
   "bin": "./onedrive-path-scrub.js",
@@ -13,7 +13,7 @@
     "onedrive",
     "commander"
   ],
-  "license": "BSD-2",
+  "license": "BSD-2-Clause",
   "repository": {
     "type": "git",
     "url": "https://github.com/skaulana/onedrive-path-scrub.git"

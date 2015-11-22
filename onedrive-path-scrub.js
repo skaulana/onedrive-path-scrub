@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 var fs = require('fs')
+  , os = require('os')
   , program = require('commander');
 
 // set up command line syntax
 program
-  .version('0.0.3')
+  .version('0.0.4')
   .usage('[options]')
   .option('-v, --verbose', 'output extra details')
   .option('-p, --path [dir]', 'OneDrive directory (defaults to %UserProfile%\\SkyDrive)')
@@ -20,6 +21,9 @@ program.on('--help', function() {
 });
 
 program.parse(process.argv);
+
+if (program.verbose) console.log('Platform: %s %s', os.type(), os.release());
+if (os.type() != 'Windows_NT' || os.release().substring(0,3) != '6.3') console.log('\x1b[33m%s\x1b[0m', 'You don\'t appear to be running this on a Windows 8.1 machine...');
 
 // use a non-default path if given
 var rootPath = program.path
